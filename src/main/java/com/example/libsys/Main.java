@@ -3,6 +3,14 @@ package com.example.libsys;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+
+    >>>>>>>>>>>>>>>>>>>>>  Theodor Freed - TE23D <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    I detta program kan man lägga till och visa böcker och tidningar i en meny
+
+
+*/
+
 public class Main {
     public static void main(String[] args) {
 
@@ -26,7 +34,7 @@ public class Main {
             if (val == 1) {
 
             } else if (val == 2) {
-
+               
             } else if (val == 3) {
                 for (Book b : books) {
                     System.out.println(b.getBookInformation());
