@@ -1,4 +1,5 @@
 package com.example.libsys;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,16 +25,16 @@ public class Main {
 
             if (val == 1) {
 
-            }
-            else if (val == 2) {
+            } else if (val == 2) {
 
-            }
-            else if (val == 3) {
+            } else if (val == 3) {
                 for (Book b : books) {
                     System.out.println(b.getBookInformation());
                 }
-            }
-            else if (val == 4) {
+                for (Magazine m : magazines) {
+                    System.out.println(m.getMagazineInformation());
+                }
+            } else if (val == 4) {
 
                 System.out.print("Vad ska titeln vara: ");
                 String title = scanner.nextLine();
@@ -53,11 +54,26 @@ public class Main {
                 books.add(book);
 
                 System.out.println("Nu har vi lagt till boken!");
-            }
-            else if (val == 5) {
+            } else if (val == 5) {
+                System.out.print("Vad är titeln: ");
+                String title = scanner.nextLine();
 
-            }
-            else if (val == 6) {
+                System.out.print("Vilken issue number ska den ha: ");
+                int issueNumber = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Vad för kategori: ");
+                String category = scanner.nextLine();
+
+                System.out.print("Årtal: ");
+                int year = scanner.nextInt();
+                scanner.nextLine();
+
+                Magazine magazine = new Magazine("id", title, issueNumber, category, year, true);
+                magazines.add(magazine);
+
+                System.out.println("Tidning tillagd!");
+            } else if (val == 6) {
                 break;
             }
         }
