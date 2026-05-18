@@ -3,10 +3,18 @@ package com.example.libsys;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import kong.unirest.Unirest;
+import kong.unirest.HttpResponse;
+
+
 /*
 
     >>>>>>>>>>>>>>>>>>>>>  Theodor Freed - TE23D <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     I detta program kan man lägga till och visa böcker och tidningar i en meny
+        Den tar information från en server som man kan hämta via menyn.
 
 
 */
@@ -32,9 +40,37 @@ public class Main {
             scanner.nextLine();
 
             if (val == 1) {
+                try {
+                    HttpResponse<String> respons = Unirest.get("http://10.151.168.5:3121/books").asString();
 
+                    String allaBöcker = respons.getBody();
+
+                    ArrayList<Book> böcker = new Gson().fromJson(allaBöcker, new TypeToken<ArrayList<Book>>(){}.getType()); // gson.fromJson(body, listType);
+
+                    books.addAll(böcker);
+
+                    System.out.println("böckerna e hämtade");
+
+                } catch (Exception e) {
+                    System.out.println("äeh nu blev nåt fel");
+                    e.printStackTrace();
+                }
             } else if (val == 2) {
-               
+                try {
+                    HttpResponse<String> respons = Unirest.get("http://10.151.168.5:3121/magazines").asString();
+
+                    String allaTidningar = respons.getBody();
+
+                    ArrayList<Magazine> tidningar = new Gson().fromJson(allaTidningar, new TypeToken<ArrayList<Magazine>>(){}.getType());
+
+                    magazines.addAll(tidningar);
+
+                    System.out.println("tidningar hämtade");
+
+                } catch (Exception e) {
+                    System.out.println("äeh nu blev nåt fel");
+                    e.printStackTrace();
+                }
             } else if (val == 3) {
                 for (Book b : books) {
                     System.out.println(b.getBookInformation());
